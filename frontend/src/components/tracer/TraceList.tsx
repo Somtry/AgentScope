@@ -17,7 +17,7 @@ function TraceList() {
 
   const handleDelete = async (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    if (!confirm("\u786e\u5b9a\u5220\u9664\u8fd9\u6761 trace\uff1f")) return;
+    if (!confirm("确定删除这条 trace？")) return;
     await traceApi.delete(id);
     fetchTraces();
   };
@@ -52,7 +52,7 @@ function TraceList() {
       <div style={{ flex: 1, overflow: "auto" }}>
         {traces.length === 0 && !isLoading && (
           <div style={{ padding: 16, color: "var(--text-secondary)", fontSize: 13 }}>
-            \u6682\u65e0 trace \u6570\u636e
+            暂无 trace 数据
           </div>
         )}
         {traces.map((trace) => (
@@ -79,9 +79,9 @@ function TraceList() {
                   color: "var(--text-secondary)", fontSize: 14, padding: "0 4px",
                   lineHeight: 1,
                 }}
-                title="\u5220\u9664"
+                title="删除"
               >
-                \u00d7
+                ×
               </button>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 4 }}>
@@ -113,7 +113,7 @@ function TraceList() {
             border: "none", borderRadius: 4, cursor: "pointer", fontSize: 12,
           }}
         >
-          \u5237\u65b0
+          刷新
         </button>
       </div>
     </div>

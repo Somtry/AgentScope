@@ -11,7 +11,7 @@ function CaseList() {
 
   const handleDelete = async (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    if (!confirm("\u786e\u5b9a\u5220\u9664\u8fd9\u4e2a\u7528\u4f8b\uff1f")) return;
+    if (!confirm("确定删除这个用例？")) return;
     await evalApi.deleteCase(id);
     fetchCases();
   };
@@ -39,14 +39,14 @@ function CaseList() {
           letterSpacing: "0.5px",
         }}
       >
-        \u7528\u4f8b ({cases.length})
+        用例 ({cases.length})
         {isLoading && " ..."}
       </div>
 
       <div style={{ flex: 1, overflow: "auto" }}>
         {cases.length === 0 && !isLoading && (
           <div style={{ padding: 16, color: "var(--text-secondary)", fontSize: 13 }}>
-            \u6682\u65e0\u7528\u4f8b
+            暂无用例
           </div>
         )}
         {cases.map((c) => {
@@ -67,11 +67,11 @@ function CaseList() {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontSize: 13, fontWeight: 600 }}>
-                  {isSelected && "\u2713 "}{c.name}
+                  {isSelected && "✓ "}{c.name}
                 </span>
                 <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                   <span style={{ fontSize: 11, color: "var(--text-secondary)" }}>
-                    {rules.length} \u89c4\u5219
+                    {rules.length} 规则
                   </span>
                   <button
                     onClick={(e) => handleDelete(e, c.id)}
@@ -79,9 +79,9 @@ function CaseList() {
                       background: "none", border: "none", cursor: "pointer",
                       color: "var(--text-secondary)", fontSize: 14, padding: "0 2px", lineHeight: 1,
                     }}
-                    title="\u5220\u9664"
+                    title="删除"
                   >
-                    \u00d7
+                    ×
                   </button>
                 </div>
               </div>

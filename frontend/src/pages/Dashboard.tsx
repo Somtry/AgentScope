@@ -48,7 +48,7 @@ function Dashboard() {
           </p>
           {lastCheck && (
             <p style={{ margin: "4px 0 0", fontSize: 11, color: "var(--text-secondary)" }}>
-              \u4e0a\u6b21\u68c0\u67e5: {lastCheck}
+              上次检查: {lastCheck}
             </p>
           )}
         </div>
@@ -63,22 +63,22 @@ function Dashboard() {
       </div>
 
       <div style={cardStyle}>
-        <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>\u5feb\u901f\u5165\u95e8</h2>
+        <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>快速入门</h2>
         <div style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-primary)" }}>
           <p style={{ margin: "0 0 12px" }}>
-            <strong>1. \u8ffd\u8e2a Agent \u6267\u884c</strong> \u2014 \u542f\u52a8\u540e\u7aef\u540e\u8fd0\u884c SDK demo\uff1a
+            <strong>1. 追踪 Agent 执行</strong> — 启动后端后运行 SDK demo：
           </p>
           <pre style={{ backgroundColor: "var(--bg-tertiary)", padding: "8px 12px", borderRadius: 4, fontSize: 12, marginBottom: 12 }}>
             {"cd backend && uv run uvicorn app.main:app --port 8000\nuv run python examples/demo_tracer.py"}
           </pre>
           <p style={{ margin: "0 0 12px" }}>
-            <strong>2. \u67e5\u770b\u65f6\u95f4\u7ebf</strong> \u2014 \u6253\u5f00 Tracer \u9875\u9762\u67e5\u770b\u6267\u884c\u94fe\u8def\uff0c\u652f\u6301\u56de\u653e\u3002
+            <strong>2. 查看时间线</strong> — 打开 Tracer 页面查看执行链路，支持回放。
           </p>
           <p style={{ margin: "0 0 12px" }}>
-            <strong>3. \u8bc4\u6d4b Agent</strong> \u2014 \u6253\u5f00 Evaluator \u9875\u9762\u521b\u5efa\u7528\u4f8b\u5e76\u8fd0\u884c\u8bc4\u6d4b\u3002
+            <strong>3. 评测 Agent</strong> — 打开 Evaluator 页面创建用例并运行评测。
           </p>
           <p style={{ margin: 0, fontSize: 12, color: "var(--text-secondary)", marginTop: 16 }}>
-            \u952e\u76d8\u5feb\u6377\u952e: j/k \u5bfc\u822a\u6b65\u9aa4 \u00b7 n \u65b0\u589e\u7528\u4f8b \u00b7 1/2 \u5207\u6362\u89c6\u56fe
+            键盘快捷键: j/k 导航步骤 · n 新增用例 · 1/2 切换视图
           </p>
         </div>
       </div>

@@ -62,10 +62,10 @@ function StepDetail() {
         }}
       >
         <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-          {collapsed ? "\u25B6" : "\u25BC"} [{step.type}] {step.content?.slice(0, 50) || ""}
+          {collapsed ? "▶" : "▼"} [{step.type}] {step.content?.slice(0, 50) || ""}
         </span>
         <span style={{ fontSize: 11, color: "var(--text-secondary)" }}>
-          {collapsed ? "\u5c55\u5f00" : "\u6298\u53e0"}
+          {collapsed ? "展开" : "折叠"}
         </span>
       </div>
 
