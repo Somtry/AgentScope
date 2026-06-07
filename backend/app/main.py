@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
 from .core.database import init_db
 from .api.router import router
+from .models import Trace, Step  # 确保模型被注册到 Base.metadata
 
 app = FastAPI(title=settings.app_name, version="0.1.0")
 

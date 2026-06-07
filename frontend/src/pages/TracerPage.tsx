@@ -1,13 +1,21 @@
-// Tracer 页面占位 - Phase 1 将实现完整的时间线和回放功能
+import TraceList from "../components/tracer/TraceList";
+import Timeline from "../components/tracer/Timeline";
+import StepDetail from "../components/tracer/StepDetail";
+
+// Tracer 主页面：TraceList + Timeline + StepDetail
 function TracerPage() {
   return (
-    <div>
-      <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>
-        Tracer
-      </h1>
-      <p style={{ color: "var(--text-secondary)" }}>
-        Trace timeline and replay will be implemented in Phase 1.
-      </p>
+    <div style={{ display: "flex", height: "calc(100vh - 48px)", overflow: "hidden" }}>
+      {/* 左侧 Trace 列表 */}
+      <TraceList />
+
+      {/* 中间 + 底部 */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+        {/* 时间线 */}
+        <Timeline />
+        {/* 详情面板 */}
+        <StepDetail />
+      </div>
     </div>
   );
 }

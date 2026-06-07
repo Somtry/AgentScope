@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from .traces import router as traces_router
 
 router = APIRouter()
-# 后续各模块路由在此注册（Tracer、Evaluator 等）
+# 注册 Trace 路由
+router.include_router(traces_router, prefix="/traces", tags=["traces"])
