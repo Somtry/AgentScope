@@ -13,13 +13,11 @@ function RadarChart() {
     safety: "安全性",
   };
 
-  // 雷达指示器配置
   const indicator = dimKeys.map((k) => ({
     name: dimLabels[k],
     max: 1,
   }));
 
-  // 单 agent 或 Arena 模式
   const seriesData = reports.length > 1
     ? reports.map((r) => {
         const d = JSON.parse(r.dimensions);
@@ -31,16 +29,17 @@ function RadarChart() {
 
   const option = {
     color: colors,
+    grid: { containLabel: true },
     radar: {
       indicator,
       shape: "polygon",
       splitNumber: 4,
       center: ["50%", "55%"],
-      radius: "65%",
+      radius: "55%",
+      nameGap: 15,
       axisName: {
         color: "#cccccc",
         fontSize: 13,
-        padding: [3, 5],
       },
       splitLine: { lineStyle: { color: "#3e3e3e" } },
       splitArea: { areaStyle: { color: ["#1e1e1e", "#252526"] } },
@@ -62,11 +61,11 @@ function RadarChart() {
   };
 
   return (
-    <div style={{ width: 340, minWidth: 340, padding: 16, borderLeft: "1px solid var(--border)", boxSizing: "border-box" as const }}>
+    <div style={{ width: 380, minWidth: 380, padding: "16px 24px", borderLeft: "1px solid var(--border)", boxSizing: "border-box" as const }}>
       <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text-secondary)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>
         能力维度
       </div>
-      <ReactECharts option={option} style={{ height: 320 }} />
+      <ReactECharts option={option} style={{ height: 340 }} />
     </div>
   );
 }
