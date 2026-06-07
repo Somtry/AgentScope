@@ -1,0 +1,29 @@
+[
+  {
+    "name": "天气查询",
+    "input": "北京今天天气怎么样？",
+    "expected_output": "",
+    "eval_rules": [
+      {"type": "contains", "config": {"keywords": ["北京", "天气"]}, "weight": 1.0}
+    ],
+    "tags": ["weather", "tool_call"]
+  },
+  {
+    "name": "数学计算",
+    "input": "123 * 456 等于多少？",
+    "expected_output": "56088",
+    "eval_rules": [
+      {"type": "contains", "config": {"keywords": ["56088"]}, "weight": 1.0}
+    ],
+    "tags": ["math"]
+  },
+  {
+    "name": "语言检测",
+    "input": "用英文说一句问候",
+    "expected_output": "",
+    "eval_rules": [
+      {"type": "regex", "config": {"pattern": "(?i)(hello|hi|good|how)"}, "weight": 1.0}
+    ],
+    "tags": ["language"]
+  }
+]
