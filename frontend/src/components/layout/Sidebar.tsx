@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 // 侧边栏导航项配置
 const navItems = [
-  { path: "/", label: "Dashboard", icon: "\u25A0" },
-  { path: "/tracer", label: "Tracer", icon: "\u25B6" },
-  { path: "/evaluator", label: "Evaluator", icon: "\u2630" },
+  { path: "/", label: "Dashboard", icon: "■" },
+  { path: "/tracer", label: "Tracer", icon: "▶" },
+  { path: "/evaluator", label: "Evaluator", icon: "☰" },
 ];
 
 function Sidebar() {

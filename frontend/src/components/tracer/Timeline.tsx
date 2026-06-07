@@ -75,7 +75,7 @@ function Timeline() {
             fontSize: 12,
           }}
         >
-          {isPlaying ? "\u23F8 \u6682停" : "\u25B6 播放"}
+          {isPlaying ? "⏸ 暂停" : "▶ 播放"}
         </button>
 
         {/* 速度选择 */}

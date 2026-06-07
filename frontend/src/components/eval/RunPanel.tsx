@@ -13,8 +13,8 @@ function RunPanel() {
   const [error, setError] = useState("");
 
   const handleRun = async () => {
-    if (selectedCaseIds.length === 0) { setError("\u8bf7先选择用例"); return; }
-    if (!agentId || !endpoint) { setError("\u8bf7填写 Agent ID \u548c Endpoint"); return; }
+    if (selectedCaseIds.length === 0) { setError("请先选择用例"); return; }
+    if (!agentId || !endpoint) { setError("请填写 Agent ID 和 Endpoint"); return; }
     setRunning(true); setError("");
     try {
       if (mode === "single") {
@@ -27,7 +27,7 @@ function RunPanel() {
         setReports(rs);
       }
     } catch (e) {
-      setError(`\u8fd0行失败: ${e}`);
+      setError(`运行失败: ${e}`);
     } finally {
       setRunning(false);
     }
@@ -58,12 +58,12 @@ function RunPanel() {
               fontSize: 12,
             }}
           >
-            {m === "single" ? "\u5355 Agent" : "Arena \u5bf9\u6bd4"}
+            {m === "single" ? "单 Agent" : "Arena 对比"}
           </button>
         ))}
       </div>
 
-      {/* Agent \u914d\u7f6e */}
+      {/* Agent 配置 */}
       <div style={{ marginBottom: 12 }}>
         <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 4 }}>Agent ID</label>
         <input style={inputStyle} value={agentId} onChange={(e) => setAgentId(e.target.value)} placeholder="my_agent" />
@@ -75,14 +75,14 @@ function RunPanel() {
 
       {mode === "arena" && (
         <div style={{ marginBottom: 12, padding: 12, backgroundColor: "var(--bg-tertiary)", borderRadius: 6 }}>
-          <div style={{ fontSize: 12, color: "var(--text-secondary)", marginBottom: 8 }}>对\u624b Agent</div>
+          <div style={{ fontSize: 12, color: "var(--text-secondary)", marginBottom: 8 }}>对手 Agent</div>
           <input style={{ ...inputStyle, marginBottom: 6 }} value={arenaAgents.agent_id} onChange={(e) => setArenaAgents({ ...arenaAgents, agent_id: e.target.value })} placeholder="opponent_agent" />
           <input style={inputStyle} value={arenaAgents.endpoint} onChange={(e) => setArenaAgents({ ...arenaAgents, endpoint: e.target.value })} placeholder="http://localhost:3001/v1/chat" />
         </div>
       )}
 
       <div style={{ fontSize: 12, color: "var(--text-secondary)", marginBottom: 12 }}>
-        \u5df2\u9009 {selectedCaseIds.length} \u6761\u7528\u4f8b
+        已选 {selectedCaseIds.length} 条用例
       </div>
 
       {error && <div style={{ color: "#ef4444", fontSize: 12, marginBottom: 8 }}>{error}</div>}
@@ -96,7 +96,7 @@ function RunPanel() {
           color: "#fff", fontSize: 13, fontWeight: 600,
         }}
       >
-        {running ? "\u8fd0\u884c\u4e2d..." : "\u5f00\u59cb\u8bc4\u6d4b"}
+        {running ? "运行中..." : "开始评测"}
       </button>
     </div>
   );

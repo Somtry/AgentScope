@@ -41,19 +41,19 @@ function EvaluatorPage() {
                 fontSize: 11,
               }}
             >
-              {v === "run" ? "\u8fd0\u884c" : "\u62a5\u544a"}
+              {v === "run" ? "运行" : "报告"}
             </button>
           ))}
         </div>
       </div>
 
-      {/* 主内\u5bb9 */}
+      {/* 主内容 */}
       {view === "run" ? <RunPanel /> : <ReportView />}
 
-      {/* 右\u4fa7\u96f7\u8fbe\u56fe */}
+      {/* 右侧雷达图 */}
       <RadarChart />
 
-      {/* 编\u8f91\u5668\u5f39\u7a97 */}
+      {/* 编辑器弹窗 */}
       {showEditor && <CaseEditor onClose={() => setShowEditor(false)} />}
     </div>
   );

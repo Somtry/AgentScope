@@ -7,13 +7,13 @@ function RadarChart() {
 
   const dimKeys = ["accuracy", "relevance", "efficiency", "safety"];
   const dimLabels: Record<string, string> = {
-    accuracy: "\u51c6\u786e\u6027",
-    relevance: "\u76f8\u5173\u6027",
-    efficiency: "\u6548\u7387",
-    safety: "\u5b89\u5168\u6027",
+    accuracy: "准确性",
+    relevance: "相关性",
+    efficiency: "效率",
+    safety: "安全性",
   };
 
-  // 雷\u8fbe指\u793a\u5668配置
+  // 雷达指示器配置
   const indicator = dimKeys.map((k) => ({
     name: dimLabels[k],
     max: 1,
@@ -25,7 +25,7 @@ function RadarChart() {
         const d = JSON.parse(r.dimensions);
         return { name: r.agent_id, value: dimKeys.map((k) => d[k] || 0) };
       })
-    : [{ name: "\u80fd\u529b\u7ef4\u5ea6", value: dimKeys.map((k) => dimensions[k] || 0) }];
+    : [{ name: "能力维度", value: dimKeys.map((k) => dimensions[k] || 0) }];
 
   const colors = ["#007acc", "#f59e0b", "#22c55e", "#ef4444"];
 
@@ -58,7 +58,7 @@ function RadarChart() {
   return (
     <div style={{ width: 300, minWidth: 300, padding: 16, borderLeft: "1px solid var(--border)" }}>
       <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text-secondary)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>
-        \u80fd\u529b\u7ef4\u5ea6
+        能力维度
       </div>
       <ReactECharts option={option} style={{ height: 280 }} />
     </div>

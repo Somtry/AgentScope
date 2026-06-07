@@ -60,7 +60,7 @@ function CaseList() {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontSize: 13, fontWeight: 600 }}>
-                  {isSelected && "\u2713 "}{c.name}
+                  {isSelected && "✓ "}{c.name}
                 </span>
                 <span style={{ fontSize: 11, color: "var(--text-secondary)" }}>
                   {rules.length} 规则

@@ -13,12 +13,12 @@ const stepColors: Record<string, string> = {
 
 // 步骤类型图标
 const stepIcons: Record<string, string> = {
-  input: "\u25B6",
-  thinking: "\u25CB",
-  tool_call: "\u2699",
-  tool_result: "\u2713",
-  output: "\u25A0",
-  error: "\u2717",
+  input: "▶",
+  thinking: "○",
+  tool_call: "⚙",
+  tool_result: "✓",
+  output: "■",
+  error: "✗",
 };
 
 interface Props {
@@ -29,7 +29,7 @@ interface Props {
 
 function StepNode({ step, isSelected, onClick }: Props) {
   const color = stepColors[step.type] || "#969696";
-  const icon = stepIcons[step.type] || "\u2022";
+  const icon = stepIcons[step.type] || "•";
   const summary = step.content ? step.content.slice(0, 80) : "";
 
   return (
