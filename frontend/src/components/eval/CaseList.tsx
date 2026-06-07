@@ -1,13 +1,20 @@
 import { useEffect } from "react";
 import { useEvalStore } from "../../stores/evalStore";
+import { evalApi } from "../../api/evals";
 
-// 左侧评测用例列表
 function CaseList() {
   const { cases, selectedCaseIds, isLoading, fetchCases, toggleCase } = useEvalStore();
 
   useEffect(() => {
     fetchCases();
   }, [fetchCases]);
+
+  const handleDelete = async (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    if (!confirm("\u786e\u5b9a\u5220\u9664\u8fd9\u4e2a\u7528\u4f8b\uff1f")) return;
+    await evalApi.deleteCase(id);
+    fetchCases();
+  };
 
   return (
     <div
@@ -32,14 +39,14 @@ function CaseList() {
           letterSpacing: "0.5px",
         }}
       >
-        用例 ({cases.length})
+        \u7528\u4f8b ({cases.length})
         {isLoading && " ..."}
       </div>
 
       <div style={{ flex: 1, overflow: "auto" }}>
         {cases.length === 0 && !isLoading && (
           <div style={{ padding: 16, color: "var(--text-secondary)", fontSize: 13 }}>
-            暂无用例，点击下方新增
+            \u6682\u65e0\u7528\u4f8b
           </div>
         )}
         {cases.map((c) => {
@@ -60,11 +67,23 @@ function CaseList() {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontSize: 13, fontWeight: 600 }}>
-                  {isSelected && "✓ "}{c.name}
+                  {isSelected && "\u2713 "}{c.name}
                 </span>
-                <span style={{ fontSize: 11, color: "var(--text-secondary)" }}>
-                  {rules.length} 规则
-                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: 11, color: "var(--text-secondary)" }}>
+                    {rules.length} \u89c4\u5219
+                  </span>
+                  <button
+                    onClick={(e) => handleDelete(e, c.id)}
+                    style={{
+                      background: "none", border: "none", cursor: "pointer",
+                      color: "var(--text-secondary)", fontSize: 14, padding: "0 2px", lineHeight: 1,
+                    }}
+                    title="\u5220\u9664"
+                  >
+                    \u00d7
+                  </button>
+                </div>
               </div>
               {tags.length > 0 && (
                 <div style={{ marginTop: 4, display: "flex", gap: 4, flexWrap: "wrap" }}>
@@ -72,11 +91,8 @@ function CaseList() {
                     <span
                       key={t}
                       style={{
-                        fontSize: 10,
-                        padding: "1px 6px",
-                        borderRadius: 3,
-                        backgroundColor: "var(--accent)",
-                        color: "#fff",
+                        fontSize: 10, padding: "1px 6px", borderRadius: 3,
+                        backgroundColor: "var(--accent)", color: "#fff",
                       }}
                     >
                       {t}

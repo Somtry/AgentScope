@@ -7,11 +7,8 @@ backend/.venv/
 *.db
 *.pyc
 
-
-docs/
-
 # Node
-frontend/node_modules/
+node_modules/
 frontend/dist/
 
 # IDE
@@ -23,12 +20,14 @@ frontend/dist/
 Thumbs.db
 desktop.ini
 
-# ????
+# 临时文件
 .npm-cache/
 .uv-cache/
 *.bat
+*.log
+*.db-journal
 
-# ?????????????????
+# 日志文件（保留目录结构，忽略内容）
 backend/logs/*
 !backend/logs/.gitkeep
 frontend/logs/*

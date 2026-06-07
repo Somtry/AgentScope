@@ -113,3 +113,15 @@ async def get_report(report_id: str, db: AsyncSession = Depends(get_db)):
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")
     return report
+
+
+
+@router.delete("/cases/{case_id}")
+async def delete_case(case_id: str, db: AsyncSession = Depends(get_db)):
+    """删除评测用例"""
+    case = await db.get(EvalCase, case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case not found")
+    await db.delete(case)
+    await db.commit()
+    return {"ok": True}

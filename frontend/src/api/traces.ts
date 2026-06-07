@@ -40,4 +40,5 @@ export const traceApi = {
     api.post<Step[]>(`/traces/${traceId}/steps`, { steps }),
   complete: (traceId: string) =>
     api.post<Trace>(`/traces/${traceId}/complete`, {}),
+  delete: (id: string) => api.delete(`/traces/${id}`),
 };

@@ -101,3 +101,20 @@ async def complete_trace(trace_id: str, db: AsyncSession = Depends(get_db)):
     await db.commit()
     await db.refresh(trace)
     return trace
+
+
+
+@router.delete("/{trace_id}")
+async def delete_trace(trace_id: str, db: AsyncSession = Depends(get_db)):
+    """删除 trace 及其关联的 steps"""
+    from ..models.step import Step
+    trace = await db.get(Trace, trace_id)
+    if not trace:
+        raise HTTPException(status_code=404, detail="Trace not found")
+    # 先删除 steps
+    await db.execute(select(Step).where(Step.trace_id == trace_id))
+    from sqlalchemy import delete as sql_delete
+    await db.execute(sql_delete(Step).where(Step.trace_id == trace_id))
+    await db.delete(trace)
+    await db.commit()
+    return {"ok": True}

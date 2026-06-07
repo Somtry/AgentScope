@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTraceStore } from "../../stores/traceStore";
+import { traceApi } from "../../api/traces";
 
-// 状态标签颜色
 const statusColors: Record<string, string> = {
   running: "#3b82f6",
   completed: "#22c55e",
@@ -15,6 +15,13 @@ function TraceList() {
     fetchTraces();
   }, [fetchTraces]);
 
+  const handleDelete = async (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    if (!confirm("\u786e\u5b9a\u5220\u9664\u8fd9\u6761 trace\uff1f")) return;
+    await traceApi.delete(id);
+    fetchTraces();
+  };
+
   return (
     <div
       style={{
@@ -27,7 +34,6 @@ function TraceList() {
         overflow: "hidden",
       }}
     >
-      {/* 标题 */}
       <div
         style={{
           padding: "12px 16px",
@@ -43,11 +49,10 @@ function TraceList() {
         {isLoading && " ..."}
       </div>
 
-      {/* 列表 */}
       <div style={{ flex: 1, overflow: "auto" }}>
         {traces.length === 0 && !isLoading && (
           <div style={{ padding: 16, color: "var(--text-secondary)", fontSize: 13 }}>
-            暂无 trace 数据
+            \u6682\u65e0 trace \u6570\u636e
           </div>
         )}
         {traces.map((trace) => (
@@ -63,10 +68,23 @@ function TraceList() {
               transition: "background-color 0.1s",
             }}
           >
-            <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>
-              {trace.agent_id}
-            </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 13, fontWeight: 600 }}>
+                {trace.agent_id}
+              </span>
+              <button
+                onClick={(e) => handleDelete(e, trace.id)}
+                style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  color: "var(--text-secondary)", fontSize: 14, padding: "0 4px",
+                  lineHeight: 1,
+                }}
+                title="\u5220\u9664"
+              >
+                \u00d7
+              </button>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 4 }}>
               <span
                 style={{
                   fontSize: 11,
@@ -86,27 +104,16 @@ function TraceList() {
         ))}
       </div>
 
-      {/* 刷新按钮 */}
-      <div
-        style={{
-          padding: "8px 16px",
-          borderTop: "1px solid var(--border)",
-        }}
-      >
+      <div style={{ padding: "8px 16px", borderTop: "1px solid var(--border)" }}>
         <button
           onClick={fetchTraces}
           style={{
-            width: "100%",
-            padding: "6px 0",
-            backgroundColor: "var(--accent)",
-            color: "#fff",
-            border: "none",
-            borderRadius: 4,
-            cursor: "pointer",
-            fontSize: 12,
+            width: "100%", padding: "6px 0",
+            backgroundColor: "var(--accent)", color: "#fff",
+            border: "none", borderRadius: 4, cursor: "pointer", fontSize: 12,
           }}
         >
-          刷新
+          \u5237\u65b0
         </button>
       </div>
     </div>
