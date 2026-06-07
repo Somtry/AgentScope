@@ -1,6 +1,35 @@
-.idea/
-.vscode/
-node_modules/
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
 dist/
+backend/.venv/
+*.db
+*.pyc
+
 
 docs/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ????
+.npm-cache/
+.uv-cache/
+*.bat
+
+# ?????????????????
+backend/logs/*
+!backend/logs/.gitkeep
+frontend/logs/*
+!frontend/logs/.gitkeep
