@@ -35,7 +35,13 @@ function RadarChart() {
       indicator,
       shape: "polygon",
       splitNumber: 4,
-      axisName: { color: "#cccccc", fontSize: 12 },
+      center: ["50%", "55%"],
+      radius: "65%",
+      axisName: {
+        color: "#cccccc",
+        fontSize: 13,
+        padding: [3, 5],
+      },
       splitLine: { lineStyle: { color: "#3e3e3e" } },
       splitArea: { areaStyle: { color: ["#1e1e1e", "#252526"] } },
       axisLine: { lineStyle: { color: "#3e3e3e" } },
@@ -43,7 +49,7 @@ function RadarChart() {
     series: [
       {
         type: "radar",
-        data: seriesData.map((d, i) => ({
+        data: seriesData.map((d) => ({
           ...d,
           areaStyle: { opacity: 0.15 },
           lineStyle: { width: 2 },
@@ -56,11 +62,11 @@ function RadarChart() {
   };
 
   return (
-    <div style={{ width: 300, minWidth: 300, padding: 16, borderLeft: "1px solid var(--border)" }}>
+    <div style={{ width: 340, minWidth: 340, padding: 16, borderLeft: "1px solid var(--border)", boxSizing: "border-box" as const }}>
       <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text-secondary)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>
         能力维度
       </div>
-      <ReactECharts option={option} style={{ height: 280 }} />
+      <ReactECharts option={option} style={{ height: 320 }} />
     </div>
   );
 }
